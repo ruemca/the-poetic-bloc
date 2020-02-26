@@ -1,0 +1,102 @@
+body {
+    background-color: goldenrod;
+    color: lemonchiffon;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+}
+#wrapper {
+    width:90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+header {
+    text-align: center;
+}
+h1 {
+    font: 3em 'Jacques Francois Shadow';
+}
+nav {
+    text-align: center;
+}
+menu {
+    background-color:lemonchiffon;
+    position:fixed;
+    right:-160px;
+    top:0;
+    margin:0;
+    padding:0;
+    z-index: 99999;
+    width:160px; 
+    height: 100%;
+    transition: ease-in 0.3s;
+    transform: translateX(-160px);
+}
+.menuShow { /* comment me out to keep menu visible */
+    transition: ease-in 0.3s;
+    transform: translateX(0);
+}
+menu ul {
+    padding-top: 20px;
+}
+menu ul li {
+    padding-top:20px;
+    color:#000;
+    list-style-type: none;
+}
+#container {
+    position: relative;
+    border: 2px outset lemonchiffon;
+    background-color: #ffffff;
+    height: 90vh;
+    width:100%;
+    padding: 0;
+}
+footer {
+    font-size: 0.7em;
+    font-style: italic;
+    text-align: center;
+    margin:2em 0;
+    padding:.5em;
+    color:lemonchiffon;
+} footer a {
+    text-decoration: none;
+    color:lemonchiffon;
+} footer a:hover {
+    color: yellow;
+}
+
+button {
+    border-radius: 5px;
+    padding: 1em;
+    margin:1em 0.5em;
+    cursor: pointer;
+}
+nav button {
+    background-color: gold;
+    border:2px solid lemonchiffon;
+} nav button:hover {
+    background-color: yellow;
+    border: 2px solid gold;
+}
+menu button {
+    background-color: gold;
+    border:2px solid goldenrod;
+    margin-left: 45px;
+    margin-top: 30px;
+} menu button:hover {
+    background-color: yellow;
+    border: 2px solid gold;
+    color: #000;
+}
+
+
+.word {
+    position: absolute;
+    background-color: rgb(243, 243, 243);
+    color:rgb(49, 10, 53);
+    width: min-content;
+    height: 1.8em;
+    padding: 0.3em 0.3em;
+} .word:hover {
+    cursor: crosshair;
+}
