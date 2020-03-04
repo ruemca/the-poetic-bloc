@@ -7,3 +7,4 @@ This project is based on the idea for a digital version of poetry magnets. Often
 I hope this site can be entertaining, as well as a potentially useful tool for anyone who enjoys writing poetry but perhaps feels daunted by the seemingly endless scope of the English language, or the pressure of an entirely blank page (or screen). 
 
 More updates forthcoming
+Preview the project here (be aware of elements under construction): https://myweb.students.wwu.edu/~carrolr8/CS403/the-poetic-bloc/index.html
