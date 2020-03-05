@@ -9,4 +9,4 @@ I hope this site can be entertaining, as well as a potentially useful tool for a
 More updates forthcoming
 
 Preview the project here (be aware of elements under construction): 
-https://myweb.students.wwu.edu/~carrolr8/CS403/the-poetic-bloc/index.html
+http://myweb.students.wwu.edu/~carrolr8/CS403/the-poetic-bloc/index.html
