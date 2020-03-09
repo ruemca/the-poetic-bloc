@@ -7,25 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>welcome to the poetic bloc</title>
+    <title>the poetic bloc</title>
 </head>
 
 <body>
     <div id="wrapper">
         <header>
-            <h1>the poetic bloc</h1>
+            <h1 title="welcome to the poetic bloc! drag the words around to make poetry and add more words from the available themes, or be a poet revolutionary. click here to refresh.">
+                <a href="index.html">the poetic bloc</a>
+            </h1>
         </header>
         <nav>
-            <button id="snapOn" onclick="snapOn()">grid</button>
+            <button id="snapOn" class="selected" onclick="snapOn()">grid</button>
             <button id="snapOff" onclick="snapOff()">free-form</button>
-            <button onclick="location.reload()">refresh</button>
-            <button id="toggleThemes" onclick="toggleThemes()">themes >></button>
+            <!-- <button onclick="location.reload()">refresh</button> -->
+            <button id="liberal" class="selected" onclick="endTheRevolution()">liberal</button>
+            <button id="revolutionary" onclick="startTheRevolution()">revolutionary</button>
+            <button id="toggleThemes" onclick="toggleThemes()">more >></button>
         </nav>
         <menu class="menuShow">
-            <ul id="menuOptions">
-                <!-- theme options generate here -->
-            </ul>
-            <!-- <button id="themeCheck" onclick="updateThemes()">update</button> --> <!-- currently useless -->
+            <form method="post" onsubmit="return updateThemes();">
+                <ul id="menuOptions">
+                    <!-- theme options generate here -->
+                </ul>
+            </form>
         </menu>
         <main>
             <div id="container">
@@ -33,7 +38,7 @@
             </div>
         </main>
         <footer>
-            <p>Ruthie Carroll | <a href="mailto:carrolr8@wwu.edu">carrolr8@wwu.edu</a> | &copy; 2020</p>
+            <p><a href="mailto:carrolr8@wwu.edu">Ruthie Carroll</a> | &copy; 2020</p>
         </footer>
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
