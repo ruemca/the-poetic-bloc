@@ -1,7 +1,7 @@
 // basic content morphemes //
 var basicNoun = ['thing', 'time', 'woman', 'man', 'brother', 'sister', 'mother', 'child', 'sky', 'tree', 'love', 'animal', 'cat', 'bird', 'song', 'home', 'heart', 'head', 'hand', 'friend', 'son', 'daughter', 'fork', 'pain', 'meat', 'book', 'paper', 'fate', 'hole', 'sock', 'hair', 'bed', 'window', 'door', 'dog', 'sun', 'moon', 'star', 'moment', 'memory', 'salt', 'water', 'earth', 'air', 'coward', 'garden', 'chocolate', 'spice', 'melody', 'mind', 'language', 'band', 'face', 'phone', 'kitchen', 'stone', 'breath', 'wit', 'husband', 'wife']; // pick 30
-var basicVb = ['drink', 'cry', 'eat', 'sleep', 'hold', 'bring', 'go', 'go', 'like', 'like', 'put', 'said', 'see', 'use', 'work', 'say', 'write', 'read', 'talk', 'let', 'walk', 'run', 'stand', 'sing', 'dance', 'help', 'cook', 'climb', 'begin', 'end', 'try', 'take', 'took', 'shit', 'fuck', 'thank', 'feed', 'hurt', 'break', 'wake', 'measure', 'make', 'make', 'meet', 'remember', 'erase', 'draw', 'decorate', 'die', 'bear', 'bore', 'born', 'teach', 'learn', 'part', 'forget', 'get', 'got', 'come', 'came', 'fix', 'bloom', 'taste', 'smell', 'touch', 'feel', 'think', 'laugh', 'hide', 'concentrate', 'prod','give']; // pick 30
-var basicAdj = ['good', 'bad', 'sad', 'happy', 'hot', 'green', 'blue', 'red', 'yellow', 'soft', 'quiet', 'loud', 'still', 'crazy', 'big', 'little', 'best', 'angry', 'tired', 'thin', 'fat', 'false', 'true', 'real', 'dead', 'grey', 'black', 'white', 'old', 'young', 'odd', 'even', 'smooth', 'round', 'hard', 'easy', 'whole', 'light', 'dark', 'close', 'far', 'sweet', 'sour', 'kind', 'bold', 'best', 'straight', 'solid', 'generous', 'gorgeous', 'brilliant', 'deep', 'shallow', 'opaque', 'smart', 'clear', 'quick', 'slow', 'tall', 'short', 'wise', 'strange', 'fortunate', 'fresh']; // pick 30
+var basicVb = ['drink', 'cry', 'eat', 'sleep', 'hold', 'bring', 'go', 'go', 'like', 'like', 'put', 'said', 'see', 'use', 'work', 'say', 'write', 'read', 'talk', 'let', 'walk', 'run', 'stand', 'sing', 'dance', 'help', 'cook', 'climb', 'begin', 'end', 'try', 'take', 'took', 'shit', 'fuck', 'thank', 'feed', 'hurt', 'break', 'wake', 'measure', 'make', 'make', 'meet', 'remember', 'erase', 'draw', 'decorate', 'die', 'bear', 'bore', 'born', 'teach', 'learn', 'part', 'forget', 'get', 'got', 'come', 'came', 'fix', 'bloom', 'taste', 'smell', 'touch', 'feel', 'think', 'laugh', 'hide', 'concentrate', 'prod', 'give', 'fill']; // pick 30
+var basicAdj = ['good', 'bad', 'sad', 'happy', 'hot', 'green', 'blue', 'red', 'yellow', 'soft', 'quiet', 'loud', 'still', 'crazy', 'big', 'little', 'best', 'angry', 'tired', 'thin', 'fat', 'false', 'true', 'real', 'dead', 'grey', 'black', 'white', 'old', 'young', 'odd', 'even', 'smooth', 'round', 'hard', 'easy', 'whole', 'light', 'dark', 'close', 'far', 'sweet', 'sour', 'kind', 'bold', 'best', 'straight', 'solid', 'generous', 'gorgeous', 'brilliant', 'deep', 'shallow', 'opaque', 'smart', 'clear', 'quick', 'slow', 'tall', 'short', 'wise', 'strange', 'fortunate', 'fresh', 'empty', 'full']; // pick 30
 // fuction morphemes //
 var funcArt = ['a', 'a', 'a', 'a', 'an', 'an', 'the', 'the', 'the', 'the']; // pick 10
 var funcVb = ['am', 'are', 'are', 'be', 'is', 'is', 'is', 'is', 'is', 'is', 'was', 'were', 'will', 'did', 'do', 'do', 'has', 'has', 'have']; // pick 15
@@ -14,6 +14,7 @@ var funcPron = ['her', 'him', 'she', 'his', 'I', 'I', 'I', 'I', 'it', 'it', 'it'
 var funcNeg = ['no', 'no', 'not', 'not', 'never']; // pick 4
 var funcVbAux = ['can', 'can', 'could', 'would', 'should']; // pick 4
 // thematic content morphemes - vocabulary //
+var punct = [',',',',',',',', '.','.','.','.', '!','!', '?', ';',':', '-','(', ')', '"', '"'];
 var vocabMeta = ['poet', 'write', 'read', 'page', 'ink', 'screen', 'style', 'mind', 'think', 'bleed', 'black', 'white', 'line', 'stanza', 'word', 'order'];
 var vocabNature = ['leaf', 'twig', 'clear', 'fog', 'boot', 'hike', 'tranquil', 'breath', 'earth', 'sun', 'squint', 'discover', 'seek', 'spring', 'fall', 'summer', 'winter'];
 var vocabQueer = ['pride', 'sex', 'lesbian', 'gay', 'bi', 'sexual', 'trans', 'gender', 'queer', 'rainbow', 'inter', 'non', 'march', 'proud', 'love', 'equal', 'closet', 'self', 'shame', 'queen', 'body', 'kiss', 'skin', 'husband', 'wife', 'name'];
@@ -21,8 +22,7 @@ var vocabChildhood = ['play', 'mom', 'dad', 'brother', 'sister', 'sibling', 'hap
 var vocabSpace = ['dust', 'discover', 'empty', 'everything', 'nothing', 'dark', 'light', 'speed', 'void', 'fathom', 'new', 'world', 'star', 'planet', 'asteroid', 'galaxy', 'comet', 'cosmos', 'nebula', 'measure', 'curious'];
 var vocabReligion = ['god', 'heaven', 'hell', 'sin', 'soul', 'preach', 'pray', 'church', 'sanctuary', 'sacred', 'rite', 'grace', 'worship'];
 var vocabBredLik = ['Cow', 'wen', 'nite', 'shiny', 'write', 'has', 'gon', 'lik', 'bred', 'my', 'name', 'its', 'and', 'all', 'men', 'bed', 'i', 'stay', 'up', 'late', 'i', 'the', 'Calfe', 'Toung', 'lik', 'cat'];
-var vocabPrufrock = ['time', 'peach', 'beach', 'old', 'trousers', 'fog', 'smoke', 'street', 'mutter', 'restless', 'night', 'cheap', 'sawdust', 'hotel', 'tedious', 'argument', 'insidious', 'intent', 'question','footman','platter','matter','stair','hair'];
-/* var vocabTest = ['xxxxxxx','yyyyyyyyy','n00000000']; */
+var vocabPrufrock = ['time', 'peach', 'beach', 'old', 'trousers', 'fog', 'smoke', 'street', 'mutter', 'restless', 'night', 'cheap', 'sawdust', 'hotel', 'tedious', 'argument', 'insidious', 'intent', 'question', 'footman', 'platter', 'matter', 'stair', 'hair'];
 
 // default words, number generated //
 var wordArrays = [
@@ -40,28 +40,28 @@ var wordArrays = [
     [letter, 10],
     [suffix, 10]
 ];
-// optional theme words, menu/class name //
+// optional theme words in arrays, themeID //
 var themeArrays = [
+    [punct, 'punctuation'],
     [vocabReligion, 'religion'],
-    [vocabSpace, 'space'], 
-    [vocabChildhood, 'childhood'], 
-    [vocabQueer, 'queer'], 
-    [vocabNature, 'nature'], 
-    [vocabMeta, 'meta'], 
-    [vocabPrufrock, 'prufrock'], 
+    [vocabSpace, 'space'],
+    [vocabChildhood, 'childhood'],
+    [vocabQueer, 'queer'],
+    [vocabNature, 'nature'],
+    [vocabMeta, 'meta'],
+    [vocabPrufrock, 'prufrock'],
     [vocabBredLik, 'tumblr'],
-    /* [vocabTest, 'test'] */
 ];
 
 $(document).ready(function () {
-    var width = $('#container').width(); // parent element width
-    var height = $('#container').height(); // parent element height
     // generate random words in each basic category from array //
+    var width = $('#container').width() / 2; // half parent element width
+    var height = $('#container').height(); // parent element height
     for (var i = 0; i < wordArrays.length; i++) { // for the number of arrays
         for (var j = 0; j < wordArrays[i][1]; j++) { // for the specified number of desired words in the given array
             var wordCat = wordArrays[i][0];
             var r = Math.floor(Math.random() * wordCat.length); // randomly select any index within the array
-            var left = Math.floor(Math.random() * (width - 70));
+            var left = Math.floor(Math.random() * (width - 30));
             var top = Math.floor(Math.random() * (height - 40)); // randomly position element without x/y overflow
             $('<div class="word ui-draggable">' + wordCat[r] + '</div>').appendTo("#container").css({
                 left: left,
@@ -70,8 +70,9 @@ $(document).ready(function () {
         }
     }
     // generate theme menu from array //
-    for(var i = 0; i < themeArrays.length; i++) { // for the total number of words in the given array
-        $('<li class="menuItem" onclick="addWords(themeArrays['+i+'][0],'+i+')"><input type="checkbox" id="' + themeArrays[i][1] + '" name="' + themeArrays[i][1] + '" value="' + themeArrays[i][1] + '"><label for="' + themeArrays[i][1] + '"> ' + themeArrays[i][1] + '</label></li>').appendTo("#menuOptions");
+    for (var i = 0; i < themeArrays.length; i++) { // for the total number of arrays
+        var themeID = themeArrays[i][1];
+        $('<li class="menuItem"><input type="checkbox" id="' + themeID + '" name="' + themeID + '" value="' + themeID + '" onchange="testTheme(this,' + i + ')"><label for="' + themeID + '"> ' + themeID + '</label></li>').appendTo("#menuOptions");
     }
 });
 
@@ -80,7 +81,10 @@ $(function () {
     $(".word").draggable({
         containment: "parent",
         cursor: "crosshair",
-        stack: ".word" // refresh top z-index when word clicked
+        stack: ".word", // refresh top z-index when word clicked
+        grid: [5, 10],
+        snap: true,
+        snapTolerance: 5
     });
 });
 
@@ -88,62 +92,130 @@ $(function () {
 var grid = $(".word").draggable("option", "grid");
 var snap = $(".word").draggable("option", "snap");
 var snapTolerance = $(".selector").draggable("option", "snapTolerance");
-// turn grid on //
-function snapOn() {
-    $(".word").draggable("option", {
-        grid: [5, 10],
-        snap: true,
-        snapTolerance: 5
-    });
-}
 // turn grid off //
 function snapOff() {
     $(".word").draggable({
         grid: false,
         snap: false
     });
+    $("#snapOff").addClass('selected');
+    $("#snapOn").removeClass('selected');
 }
+// turn grid on //
+function snapOn() {
+    $(".word").draggable("option", {
+        grid: [5, 10],
+        snap: true,
+    });
+    $("#snapOn").addClass('selected');
+    $("#snapOff").removeClass('selected');
+}
+
 
 // hide/show theme menu sidebar //
 function toggleThemes() {
     $('menu').toggleClass('menuShow');
+    $('#toggleThemes').toggleClass('selected');
 }
 
-// hide/show theme words when 'update' clicked instead of each menu item individually? //
-
-/* function updateThemes() { // add and delete elements using js
-    for(var i = 0; i<themeArrays.length;i++) { // for the number of checkboxes
-        // when 'update' clicked, test to see which theme boxes are marked
-        // if a theme is marked, and those words aren't already on the page, add those words to the page. otherwise, do nothing. 
-        // if a theme is not marked, delete all elements with that class
+// test whether the theme input element has been checked or unchecked, and send to addWords or deleteWords accordingly! //
+// thx https://stackoverflow.com/questions/32438068/perform-an-action-on-checkbox-checked-or-unchecked-event-on-html-form
+function testTheme(themeID, themeIndex) { 
+    if (themeID.checked) {
+        addWordsByTheme(themeIndex);
+    } else {
+        deleteWordsByTheme(themeIndex);
     }
-} */
+}
 
-// generate words from vocab list when menu item is clicked (currently either checking or unchecking box) //
-function addWords(theme, n) {
-    var width = $('#container').width();
+// generate word elements from checked theme //
+function addWordsByTheme(themeIndex) {
+    var theme = themeArrays[themeIndex][0]; // identify the theme in question based on its index within themeArrays
+    var themeID = themeArrays[themeIndex][1];
+    var width = $('#container').width() / 2;
     var height = $('#container').height();
     for (var i = 0; i < theme.length; i++) { // for the total number of words in the given array
         var left = Math.floor(Math.random() * (width - 70));
         var top = Math.floor(Math.random() * (height - 40));
-        $('<div class="word ui-draggable ' + themeArrays[n][1] + '">'+theme[i]+'</div>').appendTo("#container").css({
+        $('<div class="word ui-draggable ' + themeID + '">' + theme[i] + '</div>').appendTo("#container").css({
             left: left,
             top: top
         });
     }
-    $(function () { // make the new words draggable
-        $(".word").draggable({
-            containment: "parent",
-            cursor: "crosshair",
-            stack: ".word"
-        });
+    $(".word").draggable({ // make the new words draggable
+        containment: "parent",
+        cursor: "crosshair",
+        stack: ".word",
+        snapTolerance: 5
     });
+    snapOn();
 }
 
-// delete theme words when box unchecked //
-
-// when grid or free-form is 'on' leave that button in 'hover' mode //
-
-// split the screen into two panels? //
+// delete word elements from unchecked theme //
+function deleteWordsByTheme(themeIndex) {
+    var targetTheme = themeArrays[themeIndex][1];
+    $('.' + targetTheme).remove();
+}
 
 // color different theme words? //
+
+// phrase, id
+var revolutionary = [
+    ['smash', 'smash'],
+    ['the patriarchy', 'pat'],
+    ['power to', 'power'],
+    ['the people', 'people'],
+    ['the future', 'future'],
+    ['belongs to', 'belongs'],
+    ['our generation', 'gen'],
+    ['fear is for', 'fear'],
+    ['billionaires', 'bill'],
+    ['fuck', 'fuck'],
+    ['fascists', 'fasc'],
+    ['save', 'save'],
+    ['the bees', 'bees']
+];
+function startTheRevolution() {
+    // $(".revolutionary").remove(); // not sure if this is necessary??
+    $(".word").css("display", "none");
+    $("#toggleThemes").css("display", "none");
+    $("#revolutionary").addClass('selected');
+    $("#liberal").removeClass('selected');
+
+    var width = $('#container').width();
+    var height = $('#container').height();
+    for (var i = 0; i < revolutionary.length; i++) { // for the total number of phrases in the revolutionary array
+        var left = Math.floor(Math.random() * (width - 70));
+        var top = Math.floor(Math.random() * (height - 40));
+        $('<div class="revolutionary word ui-draggable" id="' + revolutionary[i][1] + '">' + revolutionary[i][0] + '</div>').appendTo("#container").css({
+            left: left,
+            top: top
+        });
+    }
+    $(".word").draggable({
+        containment: "parent",
+        cursor: "crosshair",
+        stack: ".word",
+        snapTolerance: 5
+    });
+    snapOn();
+    $(".revolutionary").droppable({
+        tolerance: "touch",
+    });
+
+    // this is terrible
+    // when the correct words are touching each other, trigger a little CSS or JS animation like confetti, or perhaps something more thematically apropo revolution
+    $("#smash").on("drop", function () {
+        $("#smash,#pat").css("background-color", "lightgreen");
+    });
+    $("#smash,#bees").on("drop", function () {
+        $("#smash,#bees").css("background-color", "red");
+    });
+}
+function endTheRevolution() {
+    $(".revolutionary").remove();
+    $(".word").css("display", "inline");
+    $("#toggleThemes").css("display", "inline");
+    $("#liberal").addClass('selected');
+    $("#revolutionary").removeClass('selected');
+}
