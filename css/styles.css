@@ -39,7 +39,7 @@ menu {
     transition: ease-in 0.3s;
     transform: translateX(-160px);
 }
-.menuShow { /* comment me out to keep menu visible */
+.menuHide { /* comment me out to keep menu visible */
     transition: ease-in 0.3s;
     transform: translateX(0);
 }
@@ -99,7 +99,6 @@ input#themeCheck {
 .selected {
     background-color: yellow;
     border: 2px solid gold;
-    /* cursor: default; */
 }
 
 
@@ -112,4 +111,46 @@ input#themeCheck {
     padding: 0.3em 0.3em;
 } .word:hover {
     cursor: crosshair;
+} .ui-draggable-dragging {
+    box-shadow: 2px 2px rgb(102, 32, 102);
+}
+.revolutionary.ui-draggable-dragging, .ui-droppable-active {
+    font-style: italic;
+}
+
+/* theme specific styles */
+.religion {
+    background-color:mistyrose;
+}
+.space {
+    background-color:azure;
+}
+.childhood {
+    background-color:antiquewhite;
+}
+.queer {
+    background-color:lavenderblush;
+}
+.nature {
+    background-color:honeydew;
+}
+.meta {
+    background-color:lemonchiffon;
+}
+.prufrock {
+    background-color:aliceblue;
+}
+.tumblr {
+    background-color:lavender;
+}
+
+.part1 {
+    border-top:2px solid rgb(102, 32, 102);
+    border-left:2px solid rgb(102, 32, 102);
+    border-bottom:2px solid rgb(102, 32, 102);
+}
+.part2 {
+    border-top:2px solid rgb(102, 32, 102);
+    border-right:2px solid rgb(102, 32, 102);
+    border-bottom:2px solid rgb(102, 32, 102);
 }
