@@ -42,7 +42,7 @@ var wordArrays = [
 ];
 // optional theme words in arrays, themeID //
 var themeArrays = [
-    [punct, 'punctuation'],
+    [punct, 'punctuation'], 
     [vocabReligion, 'religion'],
     [vocabSpace, 'space'],
     [vocabChildhood, 'childhood'],
@@ -80,7 +80,6 @@ $(document).ready(function () {
 $(function () {
     $(".word").draggable({
         containment: "parent",
-        cursor: "crosshair",
         stack: ".word", // refresh top z-index when word clicked
         grid: [5, 10],
         snap: true,
@@ -111,15 +110,13 @@ function snapOn() {
     $("#snapOff").removeClass('selected');
 }
 
-
 // hide/show theme menu sidebar //
 function toggleThemes() {
-    $('menu').toggleClass('menuShow');
+    $('menu').toggleClass('menuHide');
     $('#toggleThemes').toggleClass('selected');
 }
 
-// test whether the theme input element has been checked or unchecked, and send to addWords or deleteWords accordingly! //
-// thx https://stackoverflow.com/questions/32438068/perform-an-action-on-checkbox-checked-or-unchecked-event-on-html-form
+// test whether the theme input element has been checked or unchecked, and send to addWords or deleteWords accordingly! 
 function testTheme(themeID, themeIndex) { 
     if (themeID.checked) {
         addWordsByTheme(themeIndex);
@@ -139,12 +136,11 @@ function addWordsByTheme(themeIndex) {
         var top = Math.floor(Math.random() * (height - 40));
         $('<div class="word ui-draggable ' + themeID + '">' + theme[i] + '</div>').appendTo("#container").css({
             left: left,
-            top: top
+            top: top,
         });
     }
     $(".word").draggable({ // make the new words draggable
         containment: "parent",
-        cursor: "crosshair",
         stack: ".word",
         snapTolerance: 5
     });
@@ -157,65 +153,78 @@ function deleteWordsByTheme(themeIndex) {
     $('.' + targetTheme).remove();
 }
 
-// color different theme words? //
+/************************* THE REVOLUTION *************************/
 
-// phrase, id
+// phrase pt1, pt2, id
 var revolutionary = [
-    ['smash', 'smash'],
-    ['the patriarchy', 'pat'],
-    ['power to', 'power'],
-    ['the people', 'people'],
-    ['the future', 'future'],
-    ['belongs to', 'belongs'],
-    ['our generation', 'gen'],
-    ['fear is for', 'fear'],
-    ['billionaires', 'bill'],
-    ['fuck', 'fuck'],
-    ['fascists', 'fasc'],
-    ['save', 'save'],
-    ['the bees', 'bees']
+    ['girls just wanna have', 'fundamental human rights', 'fun'],
+    ['smash', 'the patriarchy', 'smash'],
+    ['women\'s rights are', 'human rights', 'human'],
+    ['girls run', 'the world', 'world'],
+    ['a woman\'s place is', 'in the revolution', 'place'],
+    ['pizza rolls not', 'gender roles', 'roles'],
+    ['feminists are not', 'feminazis', 'fem'],
+    ['fight like', 'a girl', 'fight'],
+    ['nevertheless she', 'persisted', 'persist'],
+    ['pussy grabs', 'back', 'pussy'],
+    ['women deserve more freedoms than', 'guns', 'freedom'],
+    ['glass ceilings are', 'meant to be broken', 'ceiling'],
+    ['I\'m with', 'her', 'her'],
+    /* ['I\'m a girl, what\'s', 'your superpower', 'super'],
+    ['men of quality don\'t fear', 'equality', 'quality'],
+    ['the future is', 'female', 'future'],
+    ['my body', 'my choice', 'choice'] */
 ];
 function startTheRevolution() {
-    // $(".revolutionary").remove(); // not sure if this is necessary??
     $(".word").css("display", "none");
-    $("#toggleThemes").css("display", "none");
+    $("#toggleThemes, #snapOn, #snapOff").css("display", "none");
+    $("menu").addClass("menuHide");
     $("#revolutionary").addClass('selected');
     $("#liberal").removeClass('selected');
 
     var width = $('#container').width();
     var height = $('#container').height();
-    for (var i = 0; i < revolutionary.length; i++) { // for the total number of phrases in the revolutionary array
-        var left = Math.floor(Math.random() * (width - 70));
+    for (var i = 0; i < revolutionary.length; i++) { // for the number of whole phrases in the revolutionary array
+        var revoltName = revolutionary[i][2];
+        var revoltClass = "." + revoltName;
+        var left = Math.floor(Math.random() * (width - 260));
         var top = Math.floor(Math.random() * (height - 40));
-        $('<div class="revolutionary word ui-draggable" id="' + revolutionary[i][1] + '">' + revolutionary[i][0] + '</div>').appendTo("#container").css({
+        $('<div class="revolutionary word ui-draggable ' + revoltName + ' part1">' + revolutionary[i][0] + '</div>').appendTo("#container").css({
             left: left,
             top: top
         });
+        left = Math.floor(Math.random() * (width - 260));
+        top = Math.floor(Math.random() * (height - 40));
+        $('<div class="revolutionary word ui-draggable ' + revoltName + ' part2">' + revolutionary[i][1] + '</div>').appendTo("#container").css({
+            left: left,
+            top: top
+        });
+        $(revoltClass).draggable({ // make new words draggable
+            containment: "parent",
+            stack: ".word",
+            snap: ".revolutionary",
+            snapMode: "outside",
+            snapTolerance: 20
+        });
+        $(revoltClass).droppable({ // make new words droppable within their own phrase
+            accept: revoltClass,
+            tolerance: "touch",
+            drop: function() {
+                $(this).css("background-color", "pink");
+            } // only affects one part :(
+        });
     }
-    $(".word").draggable({
-        containment: "parent",
-        cursor: "crosshair",
-        stack: ".word",
-        snapTolerance: 5
-    });
-    snapOn();
-    $(".revolutionary").droppable({
-        tolerance: "touch",
-    });
-
     // this is terrible
-    // when the correct words are touching each other, trigger a little CSS or JS animation like confetti, or perhaps something more thematically apropo revolution
-    $("#smash").on("drop", function () {
-        $("#smash,#pat").css("background-color", "lightgreen");
-    });
-    $("#smash,#bees").on("drop", function () {
+    /* $("#smash,#bees").on("drop", function () {
         $("#smash,#bees").css("background-color", "red");
-    });
+    }); */
+    // make the revolution sequential, individualize the drop functions?
 }
+// return to basic 'liberal' mode //
 function endTheRevolution() {
     $(".revolutionary").remove();
     $(".word").css("display", "inline");
-    $("#toggleThemes").css("display", "inline");
+    $("#toggleThemes, #snapOn, #snapOff").css("display", "inline");
     $("#liberal").addClass('selected');
     $("#revolutionary").removeClass('selected');
 }
