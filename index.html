@@ -20,12 +20,11 @@
         <nav>
             <button id="snapOn" class="selected" onclick="snapOn()">grid</button>
             <button id="snapOff" onclick="snapOff()">free-form</button>
-            <!-- <button onclick="location.reload()">refresh</button> -->
             <button id="liberal" class="selected" onclick="endTheRevolution()">liberal</button>
             <button id="revolutionary" onclick="startTheRevolution()">revolutionary</button>
             <button id="toggleThemes" onclick="toggleThemes()">more >></button>
         </nav>
-        <menu class="menuShow">
+        <menu class="menuHide">
             <form method="post" onsubmit="return updateThemes();">
                 <ul id="menuOptions">
                     <!-- theme options generate here -->
@@ -38,7 +37,7 @@
             </div>
         </main>
         <footer>
-            <p><a href="mailto:carrolr8@wwu.edu">Ruthie Carroll</a> | &copy; 2020</p>
+            <p>&copy; 2020 | <a href="mailto:carrolr8@wwu.edu">Ruthie Carroll</a></p>
         </footer>
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
