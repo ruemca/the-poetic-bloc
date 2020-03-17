@@ -72,19 +72,9 @@ $(document).ready(function () {
             });
         }
     }
-
-    // generate theme menu from array //
-    for (var i = 0; i < themeArrays.length; i++) { // for the total number of arrays
-        var themeID = themeArrays[i][1];
-        $('<li class="menuItem"><input type="checkbox" id="' + themeID + '" name="' + themeID + '" value="' + themeID + '" onchange="testTheme(this,' + i + ')"><label for="' + themeID + '"> ' + themeID + '</label></li>').appendTo("#menuOptions");
-    }
-});
-
-// make word elements draggable //
-$(function () {
+    // make basic words draggable //
     $(".word").draggable({
         containment: "parent",
-        cursor: "crosshair",
         stack: ".word", // refresh top z-index when word clicked
         grid: [5, 10],
         snap: true,
@@ -165,93 +155,266 @@ function deleteWordsByTheme(themeIndex) {
 
 /************************* THE REVOLUTION *************************/
 
-// revolutionary phases
+// revolutionary phases //
+// sentence pt 1, pt 2, class/id name, check value
 var revPhase1 = [
-    ['I\'m with', 'her', 'her'],
-    ['fight like', 'a girl', 'fight'],
+    ['I\'m with', 'her', 'her', false],
+    ['fight like', 'a girl', 'fight', false],
 ];
 var revPhase2 = [
-    ['pussy', 'grabs back', 'pussy'],
-    ['nevertheless she', 'persisted', 'persist'],
+    ['pussy', 'grabs back', 'pussy', false],
+    ['nevertheless she', 'persisted', 'persist', false],
 ];
 var revPhase3 = [
-    ['women\'s rights are', 'human rights', 'human'],
-    ['glass ceilings are', 'meant to be broken', 'ceiling'],
+    ['women\'s rights are', 'human rights', 'human', false],
+    ['glass ceilings are', 'meant to be broken', 'ceiling', false],
 ];
 var revPhase4 = [
-    ['girls just wanna have', 'fundamental human rights', 'fun'],
-    ['pizza rolls not', 'gender roles', 'roles'],
-    ['women deserve more freedoms than', 'guns', 'freedom'],
+    ['girls just wanna have', 'fundamental human rights', 'fun', false],
+    ['pizza rolls not', 'gender roles', 'roles', false],
+    ['women deserve more freedoms than', 'guns', 'freedom', false],
 ];
 var revPhase5 = [
-    ['smash', 'the patriarchy', 'smash'],
-    ['a woman\'s place is', 'in the revolution', 'place'],
-    ['feminists are not', 'feminazis', 'fem'],
+    ['smash', 'the patriarchy', 'smash', false],
+    ['a woman\'s place is', 'in the revolution', 'place', false],
+    ['feminists are not', 'feminazis', 'fem', false],
 ];
 
-// array of revolutionary phases
-var revPhaseArray = [
-    revPhase1, revPhase2, revPhase3, revPhase4, revPhase5
-];
-
+// switch to 'revolutionary' mode //
 function startTheRevolution() {
+    // simplify the screen setup
     $(".word").css("display", "none");
     $("#toggleThemes, #snapOn, #snapOff").css("display", "none");
     $("menu").addClass("menuHide");
     $("#revolutionary").addClass('selected');
     $("#liberal").removeClass('selected');
-    
-    // new sequential revolution //
-    var continueRevolution;
-    checkRevolution(addWordsByPhase(revPhase1)); // phase 1
-    // if checkRevolution = true, enter phase 2
+
+    continueRevolution(revPhase1); // begin with phase 1
+    // the rest will follow
 }
+
+function continueRevolution(nextRevPhase) {
+    // PHASE 1 //
+    if (nextRevPhase == revPhase1) {
+        // ADD WORDS AND MAKE THEM DRAGGABLE
+        addWordsByPhase(revPhase1);
+        // MAKE ONE SENTENCE DROPPABLE
+        $(".her").droppable({ // make new words droppable within their own sentence
+            accept: ".her",
+            tolerance: "touch",
+            over: function () {
+                $(".her").css("background-color", "pink");
+                revPhase1[0][3] = true;
+                checkRevolution(revPhase1, revPhase2);
+            },
+            out: function () {
+                $(".her").css("background-color", "rgb(243, 243, 243)");
+                revPhase1[0][3] = false;
+            }
+        });
+        // MAKE ANOTHER SENTENCE DROPPABLE
+        $(".fight").droppable({ // make new words droppable within their own sentence
+            accept: ".fight",
+            tolerance: "touch",
+            over: function () {
+                $(".fight").css("background-color", "pink");
+                revPhase1[1][3] = true;
+                checkRevolution(revPhase1, revPhase2);
+            },
+            out: function () {
+                $(".fight").css("background-color", "rgb(243, 243, 243)");
+                revPhase1[1][3] = false;
+            }
+        });
+    }
+    // PHASE 2
+    else if (nextRevPhase == revPhase2) {
+        addWordsByPhase(revPhase2);
+        $(".pussy").droppable({ // make new words droppable within their own sentence
+            accept: ".pussy",
+            tolerance: "touch",
+            over: function () {
+                $(".pussy").css("background-color", "pink");
+                revPhase2[0][3] = true;
+                checkRevolution(revPhase2, revPhase3);
+            },
+            out: function () {
+                $(".pussy").css("background-color", "rgb(243, 243, 243)");
+                revPhase2[0][3] = false;
+            }
+        });
+        $(".persist").droppable({ // make new words droppable within their own sentence
+            accept: ".persist",
+            tolerance: "touch",
+            over: function () {
+                $(".persist").css("background-color", "pink");
+                revPhase2[1][3] = true;
+                checkRevolution(revPhase2, revPhase3);
+            },
+            out: function () {
+                $(".persist").css("background-color", "rgb(243, 243, 243)");
+                revPhase2[1][3] = false;
+            }
+        });
+    }
+    // PHASE 3
+    else if (nextRevPhase == revPhase3) {
+        addWordsByPhase(revPhase3);
+        $(".human").droppable({ // make new words droppable within their own sentence
+            accept: ".human",
+            tolerance: "touch",
+            over: function () {
+                $(".human").css("background-color", "pink");
+                revPhase3[0][3] = true;
+                checkRevolution(revPhase3, revPhase4);
+            },
+            out: function () {
+                $(".human").css("background-color", "rgb(243, 243, 243)");
+                revPhase3[0][3] = false;
+            }
+        });
+        $(".ceiling").droppable({ // make new words droppable within their own sentence
+            accept: ".ceiling",
+            tolerance: "touch",
+            over: function () {
+                $(".ceiling").css("background-color", "pink");
+                revPhase3[1][3] = true;
+                checkRevolution(revPhase3, revPhase4);
+            },
+            out: function () {
+                $(".ceiling").css("background-color", "rgb(243, 243, 243)");
+                revPhase3[1][3] = false;
+            }
+        });
+    }
+    // PHASE 4
+    else if (nextRevPhase == revPhase4) {
+        addWordsByPhase(revPhase4);
+        $(".fun").droppable({ // make new words droppable within their own sentence
+            accept: ".fun",
+            tolerance: "touch",
+            over: function () {
+                $(".fun").css("background-color", "pink");
+                revPhase4[0][3] = true;
+                checkRevolution(revPhase4, revPhase5);
+            },
+            out: function () {
+                $(".fun").css("background-color", "rgb(243, 243, 243)");
+                revPhase4[0][3] = false;
+            }
+        });
+        $(".roles").droppable({ // make new words droppable within their own sentence
+            accept: ".roles",
+            tolerance: "touch",
+            over: function () {
+                $(".roles").css("background-color", "pink");
+                revPhase4[1][3] = true;
+                checkRevolution(revPhase4, revPhase5);
+            },
+            out: function () {
+                $(".roles").css("background-color", "rgb(243, 243, 243)");
+                revPhase4[1][3] = false;
+            }
+        });
+        $(".freedom").droppable({ // make new words droppable within their own sentence
+            accept: ".freedom",
+            tolerance: "touch",
+            over: function () {
+                $(".freedom").css("background-color", "pink");
+                revPhase4[2][3] = true;
+                checkRevolution(revPhase4, revPhase5);
+            },
+            out: function () {
+                $(".freedom").css("background-color", "rgb(243, 243, 243)");
+                revPhase4[2][3] = false;
+            }
+        });
+    }
+    // PHASE 5
+    else if (nextRevPhase == revPhase5) {
+        addWordsByPhase(revPhase5);
+        $(".smash").droppable({ // make new words droppable within their own sentence
+            accept: ".smash",
+            tolerance: "touch",
+            over: function () {
+                $(".smash").css("background-color", "pink");
+                revPhase5[0][3] = true;
+                checkRevolution(revPhase5);
+            },
+            out: function () {
+                $(".smash").css("background-color", "rgb(243, 243, 243)");
+                revPhase5[0][3] = false;
+            }
+        });
+        $(".place").droppable({ // make new words droppable within their own sentence
+            accept: ".place",
+            tolerance: "touch",
+            over: function () {
+                $(".place").css("background-color", "pink");
+                revPhase5[1][3] = true;
+                checkRevolution(revPhase5);
+            },
+            out: function () {
+                $(".place").css("background-color", "rgb(243, 243, 243)");
+                revPhase5[1][3] = false;
+            }
+        });
+        $(".fem").droppable({ // make new words droppable within their own sentence
+            accept: ".fem",
+            tolerance: "touch",
+            over: function () {
+                $(".fem").css("background-color", "pink");
+                revPhase5[2][3] = true;
+                checkRevolution(revPhase5);
+            },
+            out: function () {
+                $(".fem").css("background-color", "rgb(243, 243, 243)");
+                revPhase5[2][3] = false;
+            }
+        });
+    }
+    else {
+        alert("you win!!");
+    }
+}
+// add draggable words according to the next phase
 function addWordsByPhase(revPhaseN) {
     var width = $('#container').width();
     var height = $('#container').height();
     for (var i = 0; i < revPhaseN.length; i++) {
-        var left = Math.floor(Math.random() * (width - 70));
+        var left = Math.floor(Math.random() * (width - 270)); // place phrases without falling out of the container
         var top = Math.floor(Math.random() * (height - 40));
         $('<div class="revolutionary word ui-draggable ' + revPhaseN[i][2] + ' part1" id="' + revPhaseN[i][2] + '">' + revPhaseN[i][0] + '</div>').appendTo("#container").css({
             left: left,
             top: top
         });
-        left = Math.floor(Math.random() * (width - 70));
+        left = Math.floor(Math.random() * (width - 200));
         top = Math.floor(Math.random() * (height - 40));
         $('<div class="revolutionary word ui-draggable ' + revPhaseN[i][2] + ' part2" id="' + revPhaseN[i][2] + '">' + revPhaseN[i][1] + '</div>').appendTo("#container").css({
             left: left,
             top: top
         });
-        // this ends up with only one pair changing color "fight like a girl"
-        var revPhraseClass = "." + revPhaseN[i][2];
-        $(revPhraseClass).draggable({ // make new words draggable
+        $("." + revPhaseN[i][2]).draggable({ // make new words draggable
             containment: "parent",
             stack: ".revolutionary",
             snap: ".revolutionary",
             snapMode: "outside",
             snapTolerance: 20
         });
-        $(revPhraseClass).droppable({ // make new words droppable within their own phrase
-            accept: revPhraseClass,
-            tolerance: "touch",
-            over: function () {
-                // revPhraseClass = "." + revPhaseN[i][2];
-                // ID obv changed
-                var revPhraseID = "." + $(this).attr('id');
-                $(revPhraseID).css("background-color", "pink");
-                checkRevolution(true);
-            },
-            out: function () {
-                // revPhraseClass = "." + revPhaseN[i][2];
-                var revPhraseID = "." + $(this).attr('id');
-                $(revPhraseID).css("background-color", "rgb(243, 243, 243)");
-                checkRevolution(false);
-            }
-        });
     }
 }
-function checkRevolution(progress) {
-    // if all clear, revolution enters next phase
+// check if all the current sentences have been dropped together
+function checkRevolution(thisRevPhase, nextRevPhase) {
+    for (i = 0; i < thisRevPhase.length; i++) {
+        if (thisRevPhase[i][3] == false) {
+            return false;
+        }
+    }
+    // if all sentences are dropped, remove their droppability and continue to the next phase
+    for (i = 0; i < thisRevPhase.length; i++) {
+        $("." + thisRevPhase[i][2]).droppable("destroy");
+    }
+    continueRevolution(nextRevPhase);
 }
 
 // return to basic 'liberal' mode //
