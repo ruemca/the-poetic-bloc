@@ -72,9 +72,19 @@ $(document).ready(function () {
             });
         }
     }
-    // make basic words draggable //
+
+    // generate theme menu from array //
+    for (var i = 0; i < themeArrays.length; i++) { // for the total number of arrays
+        var themeID = themeArrays[i][1];
+        $('<li class="menuItem"><input type="checkbox" id="' + themeID + '" name="' + themeID + '" value="' + themeID + '" onchange="testTheme(this,' + i + ')"><label for="' + themeID + '"> ' + themeID + '</label></li>').appendTo("#menuOptions");
+    }
+});
+
+// make word elements draggable //
+$(function () {
     $(".word").draggable({
         containment: "parent",
+        cursor: "crosshair",
         stack: ".word", // refresh top z-index when word clicked
         grid: [5, 10],
         snap: true,
