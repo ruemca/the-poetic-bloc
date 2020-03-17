@@ -14,7 +14,7 @@ var funcPron = ['her', 'him', 'she', 'his', 'I', 'I', 'I', 'I', 'it', 'it', 'it'
 var funcNeg = ['no', 'no', 'not', 'not', 'never']; // pick 4
 var funcVbAux = ['can', 'can', 'could', 'would', 'should']; // pick 4
 // thematic content morphemes - vocabulary //
-var punct = [',',',',',',',', '.','.','.','.', '!','!', '?', ';',':', '-','(', ')', '"', '"'];
+var punct = [',', ',', ',', ',', '.', '.', '.', '.', '!', '!', '?', ';', ':', '-', '(', ')', '"', '"'];
 var vocabMeta = ['poet', 'write', 'read', 'page', 'ink', 'screen', 'style', 'mind', 'think', 'bleed', 'black', 'white', 'line', 'stanza', 'word', 'order'];
 var vocabNature = ['leaf', 'twig', 'clear', 'fog', 'boot', 'hike', 'tranquil', 'breath', 'earth', 'sun', 'squint', 'discover', 'seek', 'spring', 'fall', 'summer', 'winter'];
 var vocabQueer = ['pride', 'sex', 'lesbian', 'gay', 'bi', 'sexual', 'trans', 'gender', 'queer', 'rainbow', 'inter', 'non', 'march', 'proud', 'love', 'equal', 'closet', 'self', 'shame', 'queen', 'body', 'kiss', 'skin', 'husband', 'wife', 'name'];
@@ -53,6 +53,9 @@ var themeArrays = [
     [vocabBredLik, 'tumblr'],
 ];
 
+// set min-width when page refreshes based on window size
+
+// on page refresh - main script function //
 $(document).ready(function () {
     // generate random words in each basic category from array //
     var width = $('#container').width() / 2; // half parent element width
@@ -69,6 +72,7 @@ $(document).ready(function () {
             });
         }
     }
+
     // generate theme menu from array //
     for (var i = 0; i < themeArrays.length; i++) { // for the total number of arrays
         var themeID = themeArrays[i][1];
@@ -86,6 +90,11 @@ $(function () {
         snap: true,
         snapTolerance: 5
     });
+    // generate theme menu from array //
+    for (var i = 0; i < themeArrays.length; i++) { // for the total number of arrays
+        var themeID = themeArrays[i][1];
+        $('<li class="menuItem"><input type="checkbox" id="' + themeID + '" name="' + themeID + '" value="' + themeID + '" onchange="testTheme(this,' + i + ')"><label for="' + themeID + '"> ' + themeID + '</label></li>').appendTo("#menuOptions");
+    }
 });
 
 // draggable grid options //
@@ -111,16 +120,14 @@ function snapOn() {
     $("#snapOff").removeClass('selected');
 }
 
-
 // hide/show theme menu sidebar //
 function toggleThemes() {
-    $('menu').toggleClass('menuShow');
+    $('menu').toggleClass('menuHide');
     $('#toggleThemes').toggleClass('selected');
 }
 
-// test whether the theme input element has been checked or unchecked, and send to addWords or deleteWords accordingly! //
-// thx https://stackoverflow.com/questions/32438068/perform-an-action-on-checkbox-checked-or-unchecked-event-on-html-form
-function testTheme(themeID, themeIndex) { 
+// test whether the theme input element has been checked or unchecked, and send to addWords or deleteWords accordingly! 
+function testTheme(themeID, themeIndex) {
     if (themeID.checked) {
         addWordsByTheme(themeIndex);
     } else {
@@ -139,12 +146,11 @@ function addWordsByTheme(themeIndex) {
         var top = Math.floor(Math.random() * (height - 40));
         $('<div class="word ui-draggable ' + themeID + '">' + theme[i] + '</div>').appendTo("#container").css({
             left: left,
-            top: top
+            top: top,
         });
     }
     $(".word").draggable({ // make the new words draggable
         containment: "parent",
-        cursor: "crosshair",
         stack: ".word",
         snapTolerance: 5
     });
@@ -157,65 +163,102 @@ function deleteWordsByTheme(themeIndex) {
     $('.' + targetTheme).remove();
 }
 
-// color different theme words? //
+/************************* THE REVOLUTION *************************/
 
-// phrase, id
-var revolutionary = [
-    ['smash', 'smash'],
-    ['the patriarchy', 'pat'],
-    ['power to', 'power'],
-    ['the people', 'people'],
-    ['the future', 'future'],
-    ['belongs to', 'belongs'],
-    ['our generation', 'gen'],
-    ['fear is for', 'fear'],
-    ['billionaires', 'bill'],
-    ['fuck', 'fuck'],
-    ['fascists', 'fasc'],
-    ['save', 'save'],
-    ['the bees', 'bees']
+// revolutionary phases
+var revPhase1 = [
+    ['I\'m with', 'her', 'her'],
+    ['fight like', 'a girl', 'fight'],
 ];
+var revPhase2 = [
+    ['pussy', 'grabs back', 'pussy'],
+    ['nevertheless she', 'persisted', 'persist'],
+];
+var revPhase3 = [
+    ['women\'s rights are', 'human rights', 'human'],
+    ['glass ceilings are', 'meant to be broken', 'ceiling'],
+];
+var revPhase4 = [
+    ['girls just wanna have', 'fundamental human rights', 'fun'],
+    ['pizza rolls not', 'gender roles', 'roles'],
+    ['women deserve more freedoms than', 'guns', 'freedom'],
+];
+var revPhase5 = [
+    ['smash', 'the patriarchy', 'smash'],
+    ['a woman\'s place is', 'in the revolution', 'place'],
+    ['feminists are not', 'feminazis', 'fem'],
+];
+
+// array of revolutionary phases
+var revPhaseArray = [
+    revPhase1, revPhase2, revPhase3, revPhase4, revPhase5
+];
+
 function startTheRevolution() {
-    // $(".revolutionary").remove(); // not sure if this is necessary??
     $(".word").css("display", "none");
-    $("#toggleThemes").css("display", "none");
+    $("#toggleThemes, #snapOn, #snapOff").css("display", "none");
+    $("menu").addClass("menuHide");
     $("#revolutionary").addClass('selected');
     $("#liberal").removeClass('selected');
-
+    
+    // new sequential revolution //
+    var continueRevolution;
+    checkRevolution(addWordsByPhase(revPhase1)); // phase 1
+    // if checkRevolution = true, enter phase 2
+}
+function addWordsByPhase(revPhaseN) {
     var width = $('#container').width();
     var height = $('#container').height();
-    for (var i = 0; i < revolutionary.length; i++) { // for the total number of phrases in the revolutionary array
+    for (var i = 0; i < revPhaseN.length; i++) {
         var left = Math.floor(Math.random() * (width - 70));
         var top = Math.floor(Math.random() * (height - 40));
-        $('<div class="revolutionary word ui-draggable" id="' + revolutionary[i][1] + '">' + revolutionary[i][0] + '</div>').appendTo("#container").css({
+        $('<div class="revolutionary word ui-draggable ' + revPhaseN[i][2] + ' part1" id="' + revPhaseN[i][2] + '">' + revPhaseN[i][0] + '</div>').appendTo("#container").css({
             left: left,
             top: top
         });
+        left = Math.floor(Math.random() * (width - 70));
+        top = Math.floor(Math.random() * (height - 40));
+        $('<div class="revolutionary word ui-draggable ' + revPhaseN[i][2] + ' part2" id="' + revPhaseN[i][2] + '">' + revPhaseN[i][1] + '</div>').appendTo("#container").css({
+            left: left,
+            top: top
+        });
+        // this ends up with only one pair changing color "fight like a girl"
+        var revPhraseClass = "." + revPhaseN[i][2];
+        $(revPhraseClass).draggable({ // make new words draggable
+            containment: "parent",
+            stack: ".revolutionary",
+            snap: ".revolutionary",
+            snapMode: "outside",
+            snapTolerance: 20
+        });
+        $(revPhraseClass).droppable({ // make new words droppable within their own phrase
+            accept: revPhraseClass,
+            tolerance: "touch",
+            over: function () {
+                // revPhraseClass = "." + revPhaseN[i][2];
+                // ID obv changed
+                var revPhraseID = "." + $(this).attr('id');
+                $(revPhraseID).css("background-color", "pink");
+                checkRevolution(true);
+            },
+            out: function () {
+                // revPhraseClass = "." + revPhaseN[i][2];
+                var revPhraseID = "." + $(this).attr('id');
+                $(revPhraseID).css("background-color", "rgb(243, 243, 243)");
+                checkRevolution(false);
+            }
+        });
     }
-    $(".word").draggable({
-        containment: "parent",
-        cursor: "crosshair",
-        stack: ".word",
-        snapTolerance: 5
-    });
-    snapOn();
-    $(".revolutionary").droppable({
-        tolerance: "touch",
-    });
-
-    // this is terrible
-    // when the correct words are touching each other, trigger a little CSS or JS animation like confetti, or perhaps something more thematically apropo revolution
-    $("#smash").on("drop", function () {
-        $("#smash,#pat").css("background-color", "lightgreen");
-    });
-    $("#smash,#bees").on("drop", function () {
-        $("#smash,#bees").css("background-color", "red");
-    });
 }
+function checkRevolution(progress) {
+    // if all clear, revolution enters next phase
+}
+
+// return to basic 'liberal' mode //
 function endTheRevolution() {
     $(".revolutionary").remove();
     $(".word").css("display", "inline");
-    $("#toggleThemes").css("display", "inline");
+    $("#toggleThemes, #snapOn, #snapOff").css("display", "inline");
     $("#liberal").addClass('selected');
     $("#revolutionary").removeClass('selected');
 }
