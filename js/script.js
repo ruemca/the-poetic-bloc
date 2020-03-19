@@ -15,7 +15,7 @@ var funcNeg = ['no', 'no', 'not', 'not', 'never']; // pick 4
 var funcVbAux = ['can', 'can', 'could', 'would', 'should']; // pick 4
 // thematic content morphemes - vocabulary //
 var punct = [',', ',', ',', ',', '.', '.', '.', '.', '!', '!', '?', ';', ':', '-', '(', ')', '"', '"'];
-var vocabMeta = ['poet', 'write', 'read', 'page', 'ink', 'screen', 'style', 'mind', 'think', 'bleed', 'black', 'white', 'line', 'stanza', 'word', 'order'];
+var vocabMeta = ['poet', 'write', 'read', 'page', 'ink', 'screen', 'style', 'mind', 'think', 'bleed', 'black', 'white', 'line', 'stanza', 'word', 'order', 'rhapsody'];
 var vocabNature = ['leaf', 'twig', 'clear', 'fog', 'boot', 'hike', 'tranquil', 'breath', 'earth', 'sun', 'squint', 'discover', 'seek', 'spring', 'fall', 'summer', 'winter'];
 var vocabQueer = ['pride', 'sex', 'lesbian', 'gay', 'bi', 'sexual', 'trans', 'gender', 'queer', 'rainbow', 'inter', 'non', 'march', 'proud', 'love', 'equal', 'closet', 'self', 'shame', 'queen', 'body', 'kiss', 'skin', 'husband', 'wife', 'name'];
 var vocabChildhood = ['play', 'mom', 'dad', 'brother', 'sister', 'sibling', 'happy', 'sad', 'mate', 'friend', 'pony', 'bike', 'lick', 'lollipop', 'young', 'small', 'follow', 'shy', 'know', 'un', 'certain', 'understand', 'back', 'forward', 'question', 'everything', 'love', 'now', 'then', 'past', 'stick', 'believe', 'make', 'bright', 'curious', 'craft', 'crash'];
@@ -23,6 +23,7 @@ var vocabSpace = ['dust', 'discover', 'empty', 'everything', 'nothing', 'dark', 
 var vocabReligion = ['god', 'heaven', 'hell', 'sin', 'soul', 'preach', 'pray', 'church', 'sanctuary', 'sacred', 'rite', 'grace', 'worship'];
 var vocabBredLik = ['Cow', 'wen', 'nite', 'shiny', 'write', 'has', 'gon', 'lik', 'bred', 'my', 'name', 'its', 'and', 'all', 'men', 'bed', 'i', 'stay', 'up', 'late', 'i', 'the', 'Calfe', 'Toung', 'lik', 'cat'];
 var vocabPrufrock = ['time', 'peach', 'beach', 'old', 'trousers', 'fog', 'smoke', 'street', 'mutter', 'restless', 'night', 'cheap', 'sawdust', 'hotel', 'tedious', 'argument', 'insidious', 'intent', 'question', 'footman', 'platter', 'matter', 'stair', 'hair'];
+/* var vocabCitlalli = ['frick frack', 'paddy whack', 'biscuit', 'samantha from', 'sammy', 'nard', 'chock a block']; */
 
 // default words, number generated //
 var wordArrays = [
@@ -52,8 +53,6 @@ var themeArrays = [
     [vocabPrufrock, 'prufrock'],
     [vocabBredLik, 'tumblr'],
 ];
-
-// set min-width when page refreshes based on window size
 
 // on page refresh - main script function //
 $(document).ready(function () {
@@ -86,6 +85,7 @@ $(document).ready(function () {
         $('<li class="menuItem"><input type="checkbox" id="' + themeID + '" name="' + themeID + '" value="' + themeID + '" onchange="testTheme(this,' + i + ')"><label for="' + themeID + '"> ' + themeID + '</label></li>').appendTo("#menuOptions");
     }
 });
+// set min-width when page refreshes based on window size?
 
 // draggable grid options //
 var grid = $(".word").draggable("option", "grid");
@@ -176,7 +176,7 @@ var revPhase4 = [
 ];
 var revPhase5 = [
     ['smash', 'the patriarchy', 'smash', false],
-    ['a woman\'s place is', 'in the revolution', 'place', false],
+    ['a woman\'s place is in', 'the revolution', 'place', false],
     ['feminists are not', 'feminazis', 'fem', false],
 ];
 
@@ -374,7 +374,7 @@ function continueRevolution(nextRevPhase) {
         });
     }
     else {
-        alert("you win!!");
+        alert("congratulations, revolutionary. \nyou are ready to take on the patriarchy. welcome to the poetic bloc.");
     }
 }
 // add draggable words according to the next phase
@@ -413,6 +413,7 @@ function checkRevolution(thisRevPhase, nextRevPhase) {
     // if all sentences are dropped, remove their droppability and continue to the next phase
     for (i = 0; i < thisRevPhase.length; i++) {
         $("." + thisRevPhase[i][2]).droppable("destroy");
+        thisRevPhase[i][3] = false;
     }
     continueRevolution(nextRevPhase);
 }
