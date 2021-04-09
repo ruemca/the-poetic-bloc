@@ -12,4 +12,4 @@ JQuery UI is an well-documented and widely-used library, meaning there are more 
 
 I hope this site can be entertaining, as well as a potentially useful tool for anyone who enjoys writing but perhaps feels daunted by the seemingly endless scope of the English language, the pressure of an entirely blank page, and/or the absurdity of the patriarchy. 
 
-Preview the project here: http://myweb.students.wwu.edu/~carrolr8/CS403/the-poetic-bloc/
+Preview the project here: https://ruemca.github.io/the-poetic-bloc/
